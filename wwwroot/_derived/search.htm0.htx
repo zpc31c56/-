@@ -1,0 +1,108 @@
+<html> 
+ 
+<head>
+<base href="http://adm20/adm/search.htm">
+ 
+<title>Text Search</title> 
+<meta NAME="FORMATTER" CONTENT="Microsoft Visual InterDev 1.0"> 
+</head> 
+ 
+<body> 
+ 
+<h1><a NAME="top">Text Search</a></h1> 
+ 
+<hr> 
+ 
+<p>Use the form below to search for documents in this web 
+containing specific words or combinations of words. The text 
+search engine will display a weighted list of matching documents, 
+with better matches shown first. Each list item is a link to a
+matching document; if the document has a title it will be shown, 
+otherwise only the document's file name is displayed. A brief <a HREF="#querylang">explanation</a> of the query language is 
+available, along with examples.</p> 
+<!--webbot bot="Search" s-link s-fields="TimeStamp,DocumentK," s-index="All" s-dsn="default" tag="FORM" s-text="Search for:" i-size="20" s-submit="Start Search" s-clear="Clear" b-useindexserver="1" startspan U-DOC-URL="search.htm" --><form action="_vti_script/search.htm0.idq" method="POST"><p><b>Search for: </b><input type="text" name="UserRestriction" size="20" value="<%if UserRestriction NE VT_EMPTY%><%if UserRestriction NE "UserRestriction"%><%UserRestriction%><%endif%><%endif%>"></p><p><input type="submit" value="Start Search"><input type="reset" value="Clear"></p></form><!--webbot bot="Search" endspan i-checksum="8332" -->
+<table BORDER="0">
+  <tr>
+    <td><%if CiContainsFirstRecord EQ 0%>
+      <form ACTION="_vti_script/search.htm0.idq" METHOD="POST">
+        <input TYPE="HIDDEN" NAME="CiBookmark" VALUE="<%CiBookmark%>"><input TYPE="HIDDEN" NAME="CiBookmarkSkipCount" VALUE="-<%EscapeRAW CiMaxRecordsPerPage%>"><input TYPE="HIDDEN" NAME="CiMaxRecordsPerPage" VALUE="<%EscapeRAW CiMaxRecordsPerPage%>"><input TYPE="HIDDEN" NAME="UserRestriction" VALUE="<%UserRestriction%>"><input TYPE="HIDDEN" NAME="CiScope" VALUE="<%CiScope%>"><%if CiMaxRecordsPerPage EQ 1%><input TYPE="SUBMIT" VALUE="先前按鍵"><%else%><input TYPE="SUBMIT" VALUE="上一個 <%CiMaxRecordsPerPage%> 拜訪人數"><%endif%>
+      </form>
+      <%endif%></td>
+    <td><%if CiContainsLastRecord EQ 0%>
+      <form ACTION="_vti_script/search.htm0.idq" METHOD="POST">
+        <input TYPE="HIDDEN" NAME="CiBookmark" VALUE="<%CiBookmark%>"><input TYPE="HIDDEN" NAME="CiBookmarkSkipCount" VALUE="<%EscapeRAW CiMaxRecordsPerPage%>"><input TYPE="HIDDEN" NAME="CiMaxRecordsPerPage" VALUE="<%EscapeRAW CiMaxRecordsPerPage%>"><input TYPE="HIDDEN" NAME="UserRestriction" VALUE="<%UserRestriction%>"><input TYPE="HIDDEN" NAME="CiScope" VALUE="<%CiScope%>"><%if CiRecordsNextPage EQ 1%><input TYPE="SUBMIT" VALUE="下一計數"><%else%><input TYPE="SUBMIT" VALUE="下一個 <%CiRecordsNextPage%> 拜訪人數"><%endif%>
+      </form>
+      <%endif%></td>
+  </tr>
+</table>
+<%if CiMatchedRecordCount EQ 0%>
+<p><b>找不到文件，請再試一次。</b></p>
+<%else%>
+<p><b>找到文件的數目: <%CiMatchedRecordCount%>. 按下文件可以檢視，或提交另一個搜尋。</b></p>
+<table BORDER>
+  <caption><b>搜尋結果</b></caption>
+  <tr>
+    <td><b>文件</b></td>
+    <td><b>日期</b></td>
+    <td align="right"><b>大小</b></td>
+  </tr>
+  <%endif%><%begindetail%>
+  <tr>
+    <td><a href="<%EscapeURL vpath%>"><%if DocTitle ISEMPTY%><%Filename%><%else%><%DocTitle%><%endif%></a></td>
+    <td><%if write NE ""%><%write%> GMT<%else%>&nbsp<%endif%></td>
+    <td align="right"><%if size NE ""%><%size%><%else%>&nbsp<%endif%></td>
+  </tr>
+  <%enddetail%><%if CiMatchedRecordCount GT 0%>
+</table>
+<%endif%> 
+ 
+<hr> 
+ 
+<h2><a NAME="querylang">Query Language</a></h2> 
+ 
+<p>The text search engine allows queries to be formed from 
+arbitrary Boolean expressions containing the keywords AND, OR,
+and NOT, and grouped with parentheses. For example:</p> 
+ 
+<blockquote> 
+    <dl> 
+        <dt><strong><tt>information retrieval</tt></strong></dt> 
+        <dd>finds documents containing 'information' or 
+            'retrieval'<br> 
+            <br> 
+        </dd> 
+        <dt><strong><tt>information or retrieval</tt></strong></dt> 
+        <dd>same as above<br> 
+            <br> 
+        </dd> 
+        <dt><strong><tt>information and retrieval</tt></strong></dt>
+        <dd>finds documents containing both 'information' and 
+            'retrieval'<br> 
+            <br> 
+        </dd> 
+        <dt><strong><tt>information not retrieval</tt></strong></dt> 
+        <dd>finds documents containing 'information' but not 
+            'retrieval'<br> 
+            <br> 
+        </dd> 
+        <dt><strong><tt>(information not retrieval) and WAIS</tt></strong></dt> 
+        <dd>finds documents containing 'WAIS', plus 'information'
+            but not 'retrieval'<br> 
+            <br> 
+        </dd> 
+        <dt><strong><tt>web*</tt></strong></dt> 
+        <dd>finds documents containing words starting with 'web'<br> 
+            <br> 
+        </dd> 
+    </dl> 
+</blockquote> 
+ 
+<h5><a HREF="#top">Back to Top</a></h5> 
+ 
+<hr> 
+ 
+<h5>Author information goes here.<br> 
+Copyright c 1995 Your Company Name. All rights reserved.<br> 
+</h5> 
+</body> 
+</html>
